@@ -59,4 +59,4 @@ Le serveur central (IoT-Server) agit comme un **client CoAP/HTTP**, responsable 
 | **Serveur IoT**       | 1          | Collecte les données des capteurs (client) et contrôle les deux actionneurs.    |
 | **Actionneurs**       | 2          | 1 pour l’éclairage, 1 pour la température et l’alarme incendie.                 |
 
-![Description de l'image](images/achitecture.png)
+![Description de l'image](images/architecture.png)
