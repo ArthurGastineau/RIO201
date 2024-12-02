@@ -4,11 +4,11 @@
 
 L’objectif de ce projet est de concevoir une application IoT innovante exploitant les capacités de la plateforme FIT IoT-LAB pour offrir une automatisation intelligente dans un environnement de travail. Cette application vise à améliorer le confort, l'efficacité énergétique et la sécurité grâce à une gestion proactive de la lumière, de la température et des alarmes d'urgence. Elle repose sur des capteurs pour surveiller en temps réel des paramètres environnementaux clés, tels que la luminosité et la température, et sur des actionneurs pour répondre automatiquement à des changements d’état, tout en intégrant une alarme incendie pour garantir la sécurité des occupants.
 
-###Pourquoi c'est important ?
+### Pourquoi c'est important ?
 
 Avec l'essor des espaces connectés, les applications IoT jouent un rôle crucial dans la transformation numérique des environnements de travail. Cette application spécifique s'inscrit dans une vision de durabilité et d'efficacité énergétique en réduisant les gaspillages liés à l'éclairage ou au chauffage, tout en améliorant le bien-être des employés. Elle répond à un besoin croissant d'automatisation dans les bureaux, usines et bâtiments intelligents.
 
-###Potentiel dans le futur
+### Potentiel dans le futur
 
 L'application illustre le potentiel des systèmes IoT dans les bâtiments intelligents. Avec l’intégration de technologies comme l’apprentissage automatique et l’analyse prédictive, ce type d’application pourrait évoluer vers une gestion autonome basée sur des données historiques et des prédictions. Par exemple, les capteurs pourraient anticiper les besoins en chauffage ou en éclairage en fonction des tendances climatiques ou des modèles d’occupation. L’ajout de capteurs avancés et de fonctionnalités de sécurité pourrait également transformer ce type de système en une solution clé pour les bâtiments autonomes et durables du futur.
 
