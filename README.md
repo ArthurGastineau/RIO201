@@ -62,3 +62,146 @@ Le serveur central (**IoT-Server**) agit comme un **client CoAP/HTTP**. Initiale
 | **Actionneurs**       | 2          | 1 pour l’éclairage, 1 pour la température et l’alarme incendie.                 |
 
 ![Description de l'image](images/architecture.png)
+
+## Documentation des scripts et validation
+
+### 1. Capteur de lumière (CoAP)
+
+#### Fichier : `coap-light-server.c`
+
+#### Lignes de code clés :
+
+##### Initialisation du capteur :
+``c
+light_sensor.configure(LIGHT_SENSOR_SOURCE, ISL29020_LIGHT__AMBIENT);
+```
+Configure le capteur ISL29020 pour mesurer la lumière ambiante.
+##### Gestionnaire de requêtes GET :
+``c
+float light = ((float)light_val) / LIGHT_SENSOR_VALUE_SCALE;
+snprintf((char *)buffer, REST_MAX_CHUNK_SIZE, "{\"light\": %.2f}", light);
+```
+Lit la valeur brute du capteur et la convertit en lux avant de répondre au client.
+#### Commandes de test :
+
+##### Charger le firmware :
+``shell
+iotlab-node --update coap-light-server.iotlab-m3 -l grenoble,m3,214
+```
+##### Tester avec `aiocoap-client` :
+``shell
+aiocoap-client coap://[2001:660:5307:3142::9567]/sensors/light
+```
+#### Capture d’écran :
+![coap-light-server.png](coap-light-server.png)
+
+---
+
+### 2. Capteur de lumière (HTTP)
+
+#### Fichier : `http-light-server.c`
+
+#### Lignes de code clés :
+
+##### Réponse à la requête HTTP :
+
+#### Commandes de test :
+
+##### Charger le firmware :
+
+##### Tester avec `curl` :
+
+#### Capture d’écran :
+![http-light-server.png](http-light-server.png)
+
+---
+
+### 3. Capteur de température (CoAP)
+
+#### Fichier : `coap-temperature-server.c`
+
+#### Lignes de code clés :
+
+##### Simulation des valeurs de température :
+
+##### Réponse aux requêtes GET :
+
+#### Commandes de test :
+
+##### Charger le firmware :
+
+##### Tester avec `aiocoap-client` :
+
+#### Capture d’écran :
+![coap-temperature-server.png](coap-temperature-server.png)
+
+---
+
+### 4. Actionneur d’éclairage
+
+#### Fichier : `actuator-light.c`
+
+#### Lignes de code clés :
+
+##### Gestion des commandes POST :
+
+#### Commandes de test :
+
+##### Charger le firmware :
+
+##### Tester les commandes :
+
+###### Obtenir l'état des LEDs :
+
+###### Activer la LED verte :
+
+#### Capture d’écran :
+![actuator-light.png](actuator-light.png)
+
+---
+
+### 5. Actionneur de température
+
+#### Fichier : `actuator-temperature.c`
+
+#### Lignes de code clés :
+
+##### Gestion des commandes POST :
+
+##### Gestion des requêtes GET :
+
+#### Commandes de test :
+
+##### Charger le firmware :
+
+##### Tester les commandes :
+
+###### Obtenir l'état des LEDs :
+
+###### Activer l'alarme :
+
+#### Capture d’écran :
+![actuator-temperature.png](actuator-temperature.png)
+
+---
+
+### 6. Serveur IoT
+
+#### Fichier : `iot-server.py`
+
+#### Lignes de code clés :
+
+##### Requêtes vers les capteurs :
+
+##### Commande des actionneurs :
+
+##### Gestion de l'alarme incendie :
+
+#### Commandes de test :
+
+##### Démarrer le serveur :
+
+#### Capture d’écran :
+![iot-server.png](iot-server.png)
+
+## HTTP vs COAP
