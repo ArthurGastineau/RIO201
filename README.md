@@ -72,12 +72,12 @@ Le serveur central (**IoT-Server**) agit comme un **client CoAP/HTTP**. Initiale
 #### Lignes de code clés :
 
 ##### Initialisation du capteur :
-``c
+```c
 light_sensor.configure(LIGHT_SENSOR_SOURCE, ISL29020_LIGHT__AMBIENT);
 ```
 Configure le capteur ISL29020 pour mesurer la lumière ambiante.
 ##### Gestionnaire de requêtes GET :
-``c
+```c
 float light = ((float)light_val) / LIGHT_SENSOR_VALUE_SCALE;
 snprintf((char *)buffer, REST_MAX_CHUNK_SIZE, "{\"light\": %.2f}", light);
 ```
@@ -85,15 +85,15 @@ Lit la valeur brute du capteur et la convertit en lux avant de répondre au clie
 #### Commandes de test :
 
 ##### Charger le firmware :
-``shell
+```shell
 iotlab-node --update coap-light-server.iotlab-m3 -l grenoble,m3,214
 ```
 ##### Tester avec `aiocoap-client` :
-``shell
+```shell
 aiocoap-client coap://[2001:660:5307:3142::9567]/sensors/light
 ```
 #### Capture d’écran :
-![coap-light-server.png](coap-light-server.png)
+![coap-light-server.png](images/coap-light-server.png)
 
 ---
 
@@ -112,7 +112,7 @@ aiocoap-client coap://[2001:660:5307:3142::9567]/sensors/light
 ##### Tester avec `curl` :
 
 #### Capture d’écran :
-![http-light-server.png](http-light-server.png)
+![http-light-server.png](images/http-light-server.png)
 
 ---
 
@@ -133,7 +133,7 @@ aiocoap-client coap://[2001:660:5307:3142::9567]/sensors/light
 ##### Tester avec `aiocoap-client` :
 
 #### Capture d’écran :
-![coap-temperature-server.png](coap-temperature-server.png)
+![coap-temperature-server.png](images/coap-temperature-server.png)
 
 ---
 
@@ -156,7 +156,7 @@ aiocoap-client coap://[2001:660:5307:3142::9567]/sensors/light
 ###### Activer la LED verte :
 
 #### Capture d’écran :
-![actuator-light.png](actuator-light.png)
+![actuator-light.png](images/actuator-light.png)
 
 ---
 
@@ -181,7 +181,7 @@ aiocoap-client coap://[2001:660:5307:3142::9567]/sensors/light
 ###### Activer l'alarme :
 
 #### Capture d’écran :
-![actuator-temperature.png](actuator-temperature.png)
+![actuator-temperature.png](images/actuator-temperature.png)
 
 ---
 
@@ -202,6 +202,6 @@ aiocoap-client coap://[2001:660:5307:3142::9567]/sensors/light
 ##### Démarrer le serveur :
 
 #### Capture d’écran :
-![iot-server.png](iot-server.png)
+![iot-server.png](images/iot-server.png)
 
 ## HTTP vs COAP
