@@ -30,7 +30,9 @@ Un capteur IoT-LAB M3 est configuré comme **Border Router**, jouant le rôle de
 
 ### 3. Client IoT
 
-Le serveur central (IoT-Server) agit comme un **client CoAP/HTTP**, responsable de :
+Le serveur central (**IoT-Server**) agit comme un **client CoAP/HTTP**. Initialement prévu comme une application C, de nombreux problèmes de compilation liés à la gestion des bibliothèques CoAP/HTTP ont conduit à une implémentation finale sous forme de **script Python**. Cette implémentation est basée sur la bibliothèque Python **aiocoap**, garantissant une interaction fluide avec les capteurs et actionneurs via des protocoles CoAP et HTTP.
+
+#### Fonctionnalités :
 - **Réception des données :**
   - Envoie des requêtes `GET` aux capteurs pour collecter les données de lumière et de température.
 - **Prise de décisions :**
