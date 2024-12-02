@@ -12,11 +12,11 @@ TEMPERATURE_THRESHOLD_LOW = 15  # Température nécessitant un chauffage
 # URIs des capteurs
 COAP_LIGHT_SENSOR_URI = "coap://[2001:660:5307:3142::9567]:5683/sensors/light"
 HTTP_LIGHT_SENSOR_URI = "http://[2001:660:5307:3142::9175]/sensors/light"
-TEMPERATURE_SENSOR_URI = "coap://[2001:660:5307:3142::9234]:5683/sensors/temperature"
+TEMPERATURE_SENSOR_URI = "coap://[2001:660:5307:3142::b369]:5683/sensors/temperature"
 
 # URIs des actionneurs
 LIGHT_ACTUATOR_URI = "coap://[2001:660:5307:3142::9871]/actuator/led"
-TEMP_ACTUATOR_URI = "coap://[2001:660:5307:3142::9001]/actuator/led"
+TEMP_ACTUATOR_URI = "coap://[2001:660:5307:3142::b582]/actuator/led"
 
 # État de l'alarme incendie
 alarm_state = False
