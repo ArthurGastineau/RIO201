@@ -101,7 +101,6 @@ iotlab-node --update ~/iot-lab/parts/contiki/examples/ipv6/rpl-border-router/bor
 3. **Confirmation de l'opération** : Si tout est correctement configuré, vous obtiendrez une réponse similaire à celle-ci :
 
 ```json
-Copy code
 {
     "0": [
         "m3-212.grenoble.iot-lab.info"
