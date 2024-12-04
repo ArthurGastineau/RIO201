@@ -83,7 +83,34 @@ Ensuite, copiez les fichiers contenus dans le dépôt dans le répertoire iot-la
 ```bash
 iotlab-auth -u yourlogin
 ```
-Créez ensuite un projet en réservant 7 nœuds proches les uns des autres, tous configurés avec l'architecture M3. Ce projet permettra de simuler l'ensemble de l'architecture IoT : capteurs, actionneurs, serveur IoT et passerelle. Assurez-vous que les nœuds sont dans la même zone pour garantir une communication optimale.
+Créez ensuite un projet en réservant 7 nœuds proches les uns des autres, tous configurés avec l'architecture M3. Ce projet permettra de simuler l'ensemble de l'architecture IoT : capteurs, actionneurs, serveur IoT et passerelle. Assurez-vous que les nœuds sont dans la même zone pour garantir une communication optimale.p ar exemple les noeuds 212 à 218 du site de Grenbole.
+
+Il faudra ensuite effectuer les commandes suivantes sur le node représentant le Boarder Router :
+1. **Démarrer tunslip6 sur le frontend SSH** : Connectez-vous au frontend SSH et exécutez la commande suivante pour établir un tunnel IPv6 entre votre machine et le Border Router :
+
+```bash
+sudo tunslip6.py -v2 -L -a m3-212 -p 20000 2001:660:5307:3142::1/64
+```
+Cette commande configure le tunnel avec le préfixe IPv6 et assure une communication entre les nœuds et votre application serveur.
+
+2. **Déployer le Border Router sur le nœud M3 sélectionné** : Utilisez l'outil CLI iotlab-node pour flasher le firmware du Border Router sur un nœud spécifique. Par exemple, pour le nœud m3-212, exécutez :
+
+```bash
+iotlab-node --update ~/iot-lab/parts/contiki/examples/ipv6/rpl-border-router/border-router.iotlab-m3 -l grenoble,m3,212
+```
+3. **Confirmation de l'opération** : Si tout est correctement configuré, vous obtiendrez une réponse similaire à celle-ci :
+
+```json
+Copy code
+{
+    "0": [
+        "m3-212.grenoble.iot-lab.info"
+    ]
+}
+```
+Cela indique que le firmware du Border Router a été correctement déployé sur le nœud m3-212.
+
+Une fois le Border Router opérationnel, vous pouvez passer à la configuration des capteurs, actionneurs et du serveur IoT.
 
 ## Documentation des scripts et validation
 
@@ -221,32 +248,7 @@ static void res_get_temperature_handler(void *request, void *response, uint8_t *
   REST.set_response_payload(response, buffer, strlen((char *)buffer));
 }
 ```
-Cette fonction gère les requêtes GET pour obtenir une température simulée. Étant donné l'absence d'un capteur de température dédié, la valeur est calculée à partir des données brutes fournies par le capteur de pression atmosphérique. Après conversion en degrés Celsius, une réponse au format JSON est générée et envoyée au client. Il faudra ensuite effectuer les commandes suivantes sur le node représentant le Boarder Router :
-1. **Démarrer tunslip6 sur le frontend SSH** : Connectez-vous au frontend SSH et exécutez la commande suivante pour établir un tunnel IPv6 entre votre machine et le Border Router :
-
-```bash
-sudo tunslip6.py -v2 -L -a m3-1 -p 20000 2001:660:5307:3142::1/64
-```
-Cette commande configure le tunnel avec le préfixe IPv6 et assure une communication entre les nœuds et votre application serveur.
-
-2. **Déployer le Border Router sur le nœud M3 sélectionné** : Utilisez l'outil CLI iotlab-node pour flasher le firmware du Border Router sur un nœud spécifique. Par exemple, pour le nœud m3-1, exécutez :
-
-```bash
-iotlab-node --update ~/iot-lab/parts/contiki/examples/ipv6/rpl-border-router/border-router.iotlab-m3 -l grenoble,m3,1
-```
-3. **Confirmation de l'opération** : Si tout est correctement configuré, vous obtiendrez une réponse similaire à celle-ci :
-
-```json
-Copy code
-{
-    "0": [
-        "m3-1.grenoble.iot-lab.info"
-    ]
-}
-```
-Cela indique que le firmware du Border Router a été correctement déployé sur le nœud m3-1.
-
-Une fois le Border Router opérationnel, vous pouvez passer à la configuration des capteurs, actionneurs et du serveur IoT.
+Cette fonction gère les requêtes GET pour obtenir une température simulée. Étant donné l'absence d'un capteur de température dédié, la valeur est calculée à partir des données brutes fournies par le capteur de pression atmosphérique. Après conversion en degrés Celsius, une réponse au format JSON est générée et envoyée au client.
 
 #### Commandes de test :
 ##### Charger le firmware :
